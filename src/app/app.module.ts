@@ -6,10 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {IonicStorageModule, Storage} from "@ionic/storage-angular";
 import {StorageService} from "./services/storage.service";
+import {CreateComponent} from "./create/create.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreateComponent
   ],
   entryComponents: [],
   imports: [
@@ -17,6 +20,7 @@ import {StorageService} from "./services/storage.service";
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
+    FormsModule,
   ],
   providers: [
     Storage,

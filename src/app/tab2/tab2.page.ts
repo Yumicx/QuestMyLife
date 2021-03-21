@@ -8,13 +8,18 @@ import {StorageService} from "../services/storage.service";
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-
+  public tasks: any;
   constructor(private storageService: StorageService) {
 
   }
 
   async ngOnInit() {
-
+    this.storageService.get('name').then( task => {
+      this.tasks = task;
+    });
   }
 
+  pushToCreationPage() {
+
+  }
 }
