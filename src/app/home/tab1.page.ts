@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {StorageService} from '../services/storage.service';
+import {Storage} from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-tab1',
@@ -6,10 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  name: string;
+  showName: string;
+  showItem: boolean = true;
 
-  constructor() {}
+  constructor(private storageService: StorageService) {
+  }
 
   btnClicked() {
-    console.log("btnClicked")
+      this.storageService.set('name', this.name).then( () => {
+        console.log('btnClicked: ' + this.name);
+        this.storageService.get('name').then( response => {
+          this.showName = response;
+          this.showItem = false;
+        });
+      });
   }
 }
