@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {StorageService} from "../services/storage.service";
+
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  public tasks: any;
+  constructor(private storageService: StorageService) {
 
-  constructor() {}
+  }
 
+  async ngOnInit() {
+    this.storageService.get('name').then( task => {
+      this.tasks = task;
+    });
+  }
+
+  pushToCreationPage() {
+
+  }
 }
