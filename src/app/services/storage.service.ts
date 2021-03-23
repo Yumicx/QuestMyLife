@@ -9,7 +9,7 @@ export class StorageService {
   private _storage: Storage | null = null;
 
   constructor(private storage: Storage) {
-    this.init();
+    this.init().then(() => {});
   }
 
   async init() {
@@ -18,14 +18,11 @@ export class StorageService {
   }
 
   public set(key: string, value: any) {
-    this._storage?.set(key, value).then( x => {
-
-    });
+    this._storage?.set(key, value);
   }
 
   public get(key: string) {
-   return this._storage?.get(key).then( x => {
-
-   });
+   return this._storage?.get(key);
   }
+
 }

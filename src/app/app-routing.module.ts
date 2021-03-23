@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {CreateComponent} from "./create/create.component";
+import {Tab2Page} from "./tab2/tab2.page";
 
 const routes: Routes = [
   {
@@ -8,9 +9,11 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'create', component: CreateComponent }
-  ,
-
+    path: 'create', component: CreateComponent
+  },
+  {
+    path: 'tabs/tab2', component: Tab2Page
+  },
 ];
 @NgModule({
   imports: [

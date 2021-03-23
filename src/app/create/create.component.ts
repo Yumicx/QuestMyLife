@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StorageService} from "../services/storage.service";
 import {Storage} from "@ionic/storage-angular";
+import {ToastController} from "@ionic/angular";
 
 @Component({
   selector: 'app-create',
@@ -8,27 +9,38 @@ import {Storage} from "@ionic/storage-angular";
   styleUrls: ['./create.component.scss'],
 })
 export class CreateComponent implements OnInit {
-  name: any;
+  public name: string;
+  private tasks = [''];
 
-  constructor(private storageService: StorageService, private storage: Storage) { }
-
-  ngOnInit() {}
-
-  addTask() {
-
-    this.storage.set('test', 'hahahah').then( x => {
-      this.storage.get('test').then( x => {
-        console.log('asddsd---> ' + x);
-      });
-    });
-
-/*
-  this.storageService.set('name', 'HALLLO');
-    this.storageService.get('name').then(task => {
-      console.log('TASK ----> ' + task);
-
-    });
-*/
+  constructor(private storageService: StorageService,
+              private storage: Storage,
+              private toastController: ToastController) {
 
   }
+
+  ngOnInit() {
+    this.storage.get('tasks').then(response => {
+      if (response === undefined || response === null) {
+        this.storage.set('tasks', this.tasks)
+      } else {
+        this.tasks = response;
+      }
+    });
+  }
+
+  addTask() {
+    this.tasks.push(this.name);
+    this.storage.set('tasks', this.tasks).then( () => {
+      this.presentToast();
+    });
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Task added successfully! :)',
+      duration: 3000
+    });
+    await toast.present();
+  }
+
 }

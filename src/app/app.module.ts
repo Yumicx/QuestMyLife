@@ -19,7 +19,9 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: 'localDB'
+    }),
     FormsModule,
   ],
   providers: [

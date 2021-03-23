@@ -15,11 +15,11 @@
 
     <ion-item>
       <ion-label>Name: </ion-label>
-      <ion-input [ngModel]="name" placeholder="Enter Input"></ion-input>
+      <ion-input [(ngModel)]="name" type="text" placeholder="Enter Task Name"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>XP LVL: </ion-label>
       <ion-range color="danger" pin="true"></ion-range>
     </ion-item>
-  <ion-button (click)="addTask();" expand="full">Add Task</ion-button>
+  <ion-button [routerLink]="['/tabs/tab2']" (click)="addTask();" expand="full">Add Task</ion-button>
 </ion-content>

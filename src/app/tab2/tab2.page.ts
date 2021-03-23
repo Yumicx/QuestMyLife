@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {StorageService} from "../services/storage.service";
+import {Component, OnInit} from '@angular/core';
+import {Storage} from "@ionic/storage-angular";
 
 
 @Component({
@@ -7,19 +7,17 @@ import {StorageService} from "../services/storage.service";
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page {
-  public tasks: any;
-  constructor(private storageService: StorageService) {
+export class Tab2Page implements OnInit{
+  public tasks: [];
+
+  constructor(private storage: Storage) {
 
   }
 
-  async ngOnInit() {
-    this.storageService.get('name').then( task => {
-      this.tasks = task;
+  ngOnInit() {
+    this.storage.get('tasks').then( response => {
+      this.tasks = response;
     });
   }
 
-  pushToCreationPage() {
-
-  }
 }
